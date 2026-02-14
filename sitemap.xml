@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url><loc>https://blinktools.netlify.app/</loc></url>
+
+  <url><loc>https://blinktools.netlify.app/tools/word-counter</loc></url>
+  <url><loc>https://blinktools.netlify.app/tools/qr-generator</loc></url>
+  <url><loc>https://blinktools.netlify.app/tools/image-compressor</loc></url>
+  <url><loc>https://blinktools.netlify.app/tools/password-generator</loc></url>
+
+  <url><loc>https://blinktools.netlify.app/pages/about.html</loc></url>
+  <url><loc>https://blinktools.netlify.app/pages/privacy.html</loc></url>
+  <url><loc>https://blinktools.netlify.app/pages/terms.html</loc></url>
+  <url><loc>https://blinktools.netlify.app/pages/contact.html</loc></url>
+
+  <url><loc>https://blinktools.netlify.app/guides/how-to-use-password-generator.html</loc></url>
+  <url><loc>https://blinktools.netlify.app/guides/what-is-a-qr-code.html</loc></url>
+  <url><loc>https://blinktools.netlify.app/guides/image-compression-explained.html</loc></url>
+  <url><loc>https://blinktools.netlify.app/guides/strong-password-tips.html</loc></url>
+  <url><loc>https://blinktools.netlify.app/guides/online-tools-privacy.html</loc></url>
+
+</urlset>

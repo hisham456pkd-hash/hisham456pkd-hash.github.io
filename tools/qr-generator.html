@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QR Code Generator — BlinkTools</title>
+  <meta name="description" content="Generate QR codes for links or text. Download as PNG for free." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <div class="logo">⚡</div>
+      <div>BlinkTools <small>QR Generator</small></div>
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="qr-generator.html">QR</a>
+      <a href="../pages/privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="card" style="margin-top:14px">
+    <div class="breadcrumb"><a href="../index.html">Home</a> → Tools → QR Generator</div>
+    <h1 style="margin:6px 0 0">🔳 QR Code Generator</h1>
+    <p>Create QR for any link/text and download as PNG.</p>
+  </div>
+
+  <section class="adbox">
+    <div class="label">Ad Space (after AdSense approval)</div>
+    <div class="adslot">Ad will show here.</div>
+  </section>
+
+  <section class="card">
+    <label class="mini">Text / URL</label>
+    <input id="qrText" placeholder="https://example.com" />
+
+    <div class="row" style="margin-top:10px">
+      <span class="pill">Size: <strong id="sizeLabel">256</strong> px</span>
+      <input id="size" type="range" min="160" max="512" value="256" style="flex:1" />
+    </div>
+
+    <div class="btnRow">
+      <button class="btn primary" id="gen">Generate</button>
+      <button class="btn" id="dl" disabled>Download PNG</button>
+    </div>
+
+    <div style="margin-top:12px">
+      <div id="qrBox" class="qrCanvas"></div>
+    </div>
+
+    <p class="mini">QR is generated locally in your browser.</p>
+  </section>
+
+  <footer class="footer">
+    <div class="links">
+      <a href="../pages/about.html">About</a>
+      <a href="../pages/privacy.html">Privacy</a>
+      <a href="../pages/terms.html">Terms</a>
+      <a href="../pages/contact.html">Contact</a>
+    </div>
+    <p style="margin-top:10px">© <span id="year"></span> BlinkTools ⚡</p>
+  </footer>
+</main>
+
+<!-- QR Library (CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script type="module">
+  import { setYear, toast } from "../assets/app.js";
+  setYear();
+
+  const qrText = document.getElementById("qrText");
+  const size = document.getElementById("size");
+  const sizeLabel = document.getElementById("sizeLabel");
+  const box = document.getElementById("qrBox");
+  const dl = document.getElementById("dl");
+
+  let lastCanvas = null;
+
+  function clearBox(){
+    box.innerHTML = "";
+    lastCanvas = null;
+    dl.disabled = true;
+  }
+
+  function generate(){
+    const text = (qrText.value || "").trim();
+    if(!text){
+      toast("Enter text/URL first 🙂");
+      return;
+    }
+    clearBox();
+    const s = parseInt(size.value, 10);
+    new QRCode(box, {
+      text,
+      width: s,
+      height: s,
+      correctLevel: QRCode.CorrectLevel.M
+    });
+
+    // QRCodejs adds <img> or <canvas>
+    setTimeout(()=>{
+      lastCanvas = box.querySelector("canvas") || null;
+      dl.disabled = !lastCanvas;
+      toast("QR generated ✅");
+    }, 60);
+  }
+
+  size.addEventListener("input", ()=>{
+    sizeLabel.textContent = size.value;
+  });
+
+  document.getElementById("gen").addEventListener("click", generate);
+
+  dl.addEventListener("click", ()=>{
+    if(!lastCanvas){ toast("Generate QR first 🙂"); return; }
+    const a = document.createElement("a");
+    a.download = "blinktools-qr.png";
+    a.href = lastCanvas.toDataURL("image/png");
+    a.click();
+  });
+
+  // default
+  qrText.value = "https://blinktools.example";
+  generate();
+</script>
+</body>
+</html>

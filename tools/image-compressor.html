@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Image Compressor — BlinkTools</title>
+  <meta name="description" content="Compress JPG/PNG images in your browser. No server upload. Download compressed image." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <div class="logo">⚡</div>
+      <div>BlinkTools <small>Image Compressor</small></div>
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-compressor.html">Compressor</a>
+      <a href="../pages/privacy.html">Privacy</a>
+      <a href="../pages/contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="card" style="margin-top:14px">
+    <div class="breadcrumb"><a href="../index.html">Home</a> → Tools → Image Compressor</div>
+    <h1 style="margin:6px 0 0">🖼️ Image Compressor</h1>
+    <p>Compress images locally (no upload). Works best with JPG.</p>
+  </div>
+
+  <section class="adbox">
+    <div class="label">Ad Space (after AdSense approval)</div>
+    <div class="adslot">Ad will show here.</div>
+  </section>
+
+  <section class="card">
+    <label class="mini">Choose an image</label>
+    <input id="file" type="file" accept="image/*" />
+
+    <div class="row" style="margin-top:10px">
+      <span class="pill">Quality: <strong id="qLabel">0.75</strong></span>
+      <input id="quality" type="range" min="0.2" max="0.95" step="0.01" value="0.75" style="flex:1" />
+    </div>
+
+    <div class="btnRow">
+      <button class="btn primary" id="compress">Compress</button>
+      <button class="btn" id="download" disabled>Download</button>
+    </div>
+
+    <div class="stats" style="margin-top:10px">
+      <div class="stat"><b id="orig">-</b><span>Original</span></div>
+      <div class="stat"><b id="new">-</b><span>Compressed</span></div>
+      <div class="stat"><b id="saved">-</b><span>Saved</span></div>
+    </div>
+
+    <div class="imgPreview" style="margin-top:12px">
+      <img id="preview" alt="Preview" />
+    </div>
+
+    <p class="mini" style="margin-top:10px">Tip: Add “resize image” tool later for more traffic 📈</p>
+  </section>
+
+  <footer class="footer">
+    <div class="links">
+      <a href="../pages/about.html">About</a>
+      <a href="../pages/privacy.html">Privacy</a>
+      <a href="../pages/terms.html">Terms</a>
+      <a href="../pages/contact.html">Contact</a>
+    </div>
+    <p style="margin-top:10px">© <span id="year"></span> BlinkTools ⚡</p>
+  </footer>
+</main>
+
+<script type="module">
+  import { setYear, toast, fmtBytes } from "../assets/app.js";
+  setYear();
+
+  const file = document.getElementById("file");
+  const quality = document.getElementById("quality");
+  const qLabel = document.getElementById("qLabel");
+  const btn = document.getElementById("compress");
+  const dl = document.getElementById("download");
+  const preview = document.getElementById("preview");
+  const orig = document.getElementById("orig");
+  const neu = document.getElementById("new");
+  const saved = document.getElementById("saved");
+
+  let outBlob = null;
+  let origBytes = 0;
+
+  quality.addEventListener("input", ()=> qLabel.textContent = quality.value);
+
+  function calcSaved(newBytes){
+    const pct = Math.max(0, Math.round((1 - (newBytes / origBytes)) * 100));
+    return pct + "%";
+  }
+
+  async function compress(){
+    const f = file.files && file.files[0];
+    if(!f){ toast("Choose an image first 🖼️"); return; }
+
+    origBytes = f.size;
+    orig.textContent = fmtBytes(origBytes);
+
+    const img = new Image();
+    img.onload = () => {
+      const maxW = 2200;
+      const scale = Math.min(1, maxW / img.width);
+      const w = Math.round(img.width * scale);
+      const h = Math.round(img.height * scale);
+
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, w, h);
+
+      const isPng = f.type === "image/png";
+      const type = isPng ? "image/png" : "image/jpeg";
+      const q = isPng ? 0.92 : parseFloat(quality.value);
+
+      canvas.toBlob((blob)=>{
+        if(!blob){ toast("Compression failed 😵"); return; }
+        outBlob = blob;
+        neu.textContent = fmtBytes(blob.size);
+        saved.textContent = calcSaved(blob.size);
+        preview.src = URL.createObjectURL(blob);
+        dl.disabled = false;
+        toast("Compressed ✅");
+      }, type, q);
+    };
+    img.onerror = ()=> toast("Invalid image 😅");
+    img.src = URL.createObjectURL(f);
+  }
+
+  function download(){
+    if(!outBlob){ toast("Compress first 🙂"); return; }
+    const a = document.createElement("a");
+    const url = URL.createObjectURL(outBlob);
+    a.href = url;
+    a.download = "compressed-image";
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 1200);
+  }
+
+  btn.addEventListener("click", compress);
+  dl.addEventListener("click", download);
+</script>
+</body>
+</html>

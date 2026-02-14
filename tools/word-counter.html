@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Word Counter — BlinkTools</title>
+  <meta name="description" content="Free word counter: count words, characters, characters without spaces, and reading time." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <div class="logo">⚡</div>
+      <div>BlinkTools <small>Word Counter</small></div>
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="qr-generator.html">QR</a>
+      <a href="../pages/privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="card" style="margin-top:14px">
+    <div class="toolHead">
+      <div>
+        <div class="breadcrumb"><a href="../index.html">Home</a> → Tools → Word Counter</div>
+        <h1 style="margin:6px 0 0">📝 Word / Character Counter</h1>
+        <p>Paste text and instantly see counts + reading time.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="adbox">
+    <div class="label">Ad Space (after AdSense approval)</div>
+    <div class="adslot">Ad will show here.</div>
+  </section>
+
+  <section class="card">
+    <textarea id="text" placeholder="Type or paste your text here..."></textarea>
+
+    <div class="stats">
+      <div class="stat"><b id="words">0</b><span>Words</span></div>
+      <div class="stat"><b id="chars">0</b><span>Characters</span></div>
+      <div class="stat"><b id="nospace">0</b><span>Chars (no spaces)</span></div>
+      <div class="stat"><b id="read">0</b><span>Read time (min)</span></div>
+    </div>
+
+    <div class="btnRow">
+      <button class="btn" id="clear">Clear</button>
+      <button class="btn primary" id="copy">Copy Text</button>
+    </div>
+
+    <p class="mini">Reading time assumes ~200 words/min.</p>
+  </section>
+
+  <footer class="footer">
+    <div class="links">
+      <a href="../pages/about.html">About</a>
+      <a href="../pages/privacy.html">Privacy</a>
+      <a href="../pages/terms.html">Terms</a>
+      <a href="../pages/contact.html">Contact</a>
+    </div>
+    <p style="margin-top:10px">© <span id="year"></span> BlinkTools ⚡</p>
+  </footer>
+</main>
+
+<script type="module">
+  import { setYear, copyText, toast } from "../assets/app.js";
+  setYear();
+
+  const elText = document.getElementById("text");
+  const elWords = document.getElementById("words");
+  const elChars = document.getElementById("chars");
+  const elNoSpace = document.getElementById("nospace");
+  const elRead = document.getElementById("read");
+
+  function update(){
+    const t = elText.value || "";
+    const words = t.trim() ? t.trim().split(/\s+/).length : 0;
+    const chars = t.length;
+    const noSpace = t.replace(/\s/g, "").length;
+    const read = Math.max(0, Math.round(words / 200));
+    elWords.textContent = words;
+    elChars.textContent = chars;
+    elNoSpace.textContent = noSpace;
+    elRead.textContent = read;
+  }
+
+  elText.addEventListener("input", update);
+  update();
+
+  document.getElementById("clear").addEventListener("click", ()=>{
+    elText.value = "";
+    update();
+    toast("Cleared 🧹");
+  });
+
+  document.getElementById("copy").addEventListener("click", ()=>{
+    copyText(elText.value || "");
+  });
+</script>
+</body>
+</html>
