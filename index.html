@@ -1,161 +1,272 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6374647332088903"
-     crossorigin="anonymous"></script>
-  <meta name="google-adsense-account" content="ca-pub-6374647332088903">
-  <title>BlinkTools — Free Online Tools</title>
-  <meta name="description" content="Free online tools: word counter, QR generator, image compressor, password generator. Fast & mobile-friendly." />
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>BlinkTools — Fast Free Online Tools. No Nonsense.</title>
+  <meta name="description" content="Word counter, QR code generator, image compressor, password generator. Free browser tools — instant, private, no signup."/>
+  <link rel="stylesheet" href="./assets/blink.css"/>
+  <style>
+    /* ── HOMEPAGE ONLY ── */
+    .hero { padding: 80px 0 72px; border-bottom: 2px solid var(--border); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: center; }
+    .hero-sub { font-size: 1.05rem; color: var(--ink2); line-height: 1.7; margin: 24px 0 36px; max-width: 460px; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+    .feat-strip { display: flex; gap: 12px; flex-wrap: wrap; }
 
-  <!-- ✅ Add AdSense script here AFTER approval -->
-  <!--
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX"
-    crossorigin="anonymous"></script>
-  -->
+    /* hero right: floating tool cards */
+    .hero-tool-stack { display: flex; flex-direction: column; gap: 14px; }
+    .mini-card {
+      background: var(--card); border: 2px solid var(--border); border-radius: 16px;
+      padding: 18px 20px; display: flex; align-items: center; gap: 14px;
+      text-decoration: none; color: var(--ink);
+      transition: border-color .18s, transform .18s;
+    }
+    .mini-card:hover { border-color: var(--accent); transform: translateX(5px); }
+    .mini-card .mc-icon { font-size: 1.5rem; width: 40px; text-align: center; flex-shrink: 0; }
+    .mini-card .mc-name { font-family: var(--disp); font-size: 0.95rem; font-weight: 800; }
+    .mini-card .mc-desc { font-size: 0.78rem; color: var(--muted); }
+    .mini-card .mc-arrow { margin-left: auto; color: var(--border); font-size: 1.1rem; transition: color .18s; flex-shrink: 0; }
+    .mini-card:hover .mc-arrow { color: var(--accent); }
+
+    /* tools section */
+    .tools-section { padding: 96px 0; }
+    .tools-section-inner { display: grid; grid-template-columns: 240px 1fr; gap: 64px; }
+    .tools-left { position: sticky; top: 88px; align-self: start; }
+    .tools-left p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-top: 16px; }
+    .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+    /* why section */
+    .why-section { padding: 96px 0; background: var(--bg2); border-top: 2px solid var(--border); border-bottom: 2px solid var(--border); }
+    .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 56px; }
+    .why-card { display: flex; flex-direction: column; gap: 14px; }
+    .why-num { font-family: var(--disp); font-size: 3.5rem; font-weight: 800; color: var(--border); line-height: 1; }
+    .why-card h3 { font-family: var(--disp); font-weight: 800; font-size: 1.15rem; letter-spacing: -.3px; }
+    .why-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
+
+    /* steps section */
+    .steps-section { padding: 96px 0; }
+    .steps-section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .steps-list { display: flex; flex-direction: column; gap: 36px; margin-top: 40px; }
+    .step-line { width: 2px; background: var(--border); height: 100%; flex-shrink: 0; }
+    .tip-block { background: var(--accent); color: #fff; border-radius: 18px; padding: 28px 26px; margin-top: 24px; }
+    .tip-block .tip-label { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: .14em; opacity: .7; margin-bottom: 10px; }
+    .tip-block p { font-size: 0.9rem; line-height: 1.65; }
+
+    @media (max-width: 1000px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-tool-stack { display: grid; grid-template-columns: repeat(2,1fr); }
+      .tools-section-inner { grid-template-columns: 1fr; }
+      .tools-left { position: static; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .steps-section-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .tools-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .hero-tool-stack { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="wrap topbar">
-    <div class="brand">
-      <div class="logo">⚡</div>
-      <div>
-        BlinkTools
-        <small>Tools people need daily</small>
-      </div>
-    </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="tools/word-counter.html">Tools</a>
-      <a href="pages/privacy.html">Privacy</a>
-      <a href="pages/contact.html">Contact</a>
-    </nav>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+    <ul class="nav-links">
+      <li><a href="/tools/word-counter.html">Tools</a></li>
+      <li><a href="/pages/about.html">About</a></li>
+      <li><a href="/pages/privacy.html">Privacy</a></li>
+      <li><a href="/tools/word-counter.html" class="nav-pill">Try Now</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
-<main class="wrap">
-  <section class="hero">
-    <div class="heroCard">
-      <h1>Fast tools. No nonsense. ✅</h1>
-      <p class="sub">
-        Use free tools instantly: word counter, QR code generator, image compressor, password generator.
-      </p>
-      <div class="chips">
-        <div class="chip"><b>Fast</b> ⚡</div>
-        <div class="chip"><b>Mobile-friendly</b> 📱</div>
-        <div class="chip"><b>Privacy-first</b> 🔒</div>
-        <div class="chip"><b>SEO-ready</b> 🔎</div>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Free · Instant · No Signup Required</div>
+        <h1 class="h1-disp">Blink.<br><span class="accent-text">Done.</span></h1>
+        <p class="hero-sub">Four browser tools people actually use daily — word counter, QR generator, image compressor, password generator. Everything runs locally. Zero data leaves your device.</p>
+        <div class="hero-cta">
+          <a href="/tools/word-counter.html" class="btn btn-dark">Start with Word Counter</a>
+          <a href="/tools/qr-generator.html" class="btn btn-outline">QR Generator →</a>
+        </div>
+        <div class="feat-strip">
+          <span class="feat-pill">⚡ No loading</span>
+          <span class="feat-pill">🔒 Stays private</span>
+          <span class="feat-pill">📱 Works on mobile</span>
+        </div>
       </div>
-
-      <div class="btnRow">
-        <a class="btn primary" href="tools/word-counter.html">Start with Word Counter</a>
-        <a class="btn" href="tools/qr-generator.html">QR Generator</a>
+      <div class="hero-tool-stack">
+        <a href="/tools/word-counter.html" class="mini-card">
+          <span class="mc-icon">📝</span>
+          <div><div class="mc-name">Word Counter</div><div class="mc-desc">Words, chars, reading time</div></div>
+          <span class="mc-arrow">→</span>
+        </a>
+        <a href="/tools/qr-generator.html" class="mini-card">
+          <span class="mc-icon">🔳</span>
+          <div><div class="mc-name">QR Generator</div><div class="mc-desc">Link to QR · Download PNG</div></div>
+          <span class="mc-arrow">→</span>
+        </a>
+        <a href="/tools/image-compressor.html" class="mini-card">
+          <span class="mc-icon">🖼️</span>
+          <div><div class="mc-name">Image Compressor</div><div class="mc-desc">In-browser, no upload</div></div>
+          <span class="mc-arrow">→</span>
+        </a>
+        <a href="/tools/password-generator.html" class="mini-card">
+          <span class="mc-icon">🔐</span>
+          <div><div class="mc-name">Password Generator</div><div class="mc-desc">Strong passwords instantly</div></div>
+          <span class="mc-arrow">→</span>
+        </a>
       </div>
-
-      <p class="mini">Tip:Try multiple tools together — for example, compress an image before sharing it via QR 📦➡️🔳💸</p>
     </div>
+  </div>
+</section>
 
-   <h3>How to use BlinkTools ⚡</h3>
+<!-- TOOLS -->
+<section class="tools-section">
+  <div class="container">
+    <div class="tools-section-inner">
+      <div class="tools-left">
+        <div class="eyebrow">The Toolkit</div>
+        <h2 class="h2-disp">Four tools. <span class="underline-text">All free.</span></h2>
+        <p>Pick any tool below and get instant results — no account, no install, no nonsense. Everything processes inside your browser.</p>
+      </div>
+      <div class="tools-grid">
+        <a href="/tools/word-counter.html" class="t-card">
+          <div class="t-icon">📝</div>
+          <div class="t-name">Word / Character Counter</div>
+          <div class="t-desc">Real-time word count, character count (with and without spaces), and reading time estimate. Perfect for essays, SEO copy, and social posts.</div>
+        </a>
+        <a href="/tools/qr-generator.html" class="t-card">
+          <div class="t-icon">🔳</div>
+          <div class="t-name">QR Code Generator</div>
+          <div class="t-desc">Turn any URL or text into a scannable QR code. Adjust size and download as PNG instantly — generated 100% in your browser.</div>
+        </a>
+        <a href="/tools/image-compressor.html" class="t-card">
+          <div class="t-icon">🖼️</div>
+          <div class="t-name">Image Compressor</div>
+          <div class="t-desc">Compress JPG/PNG images and see before/after file size comparison. No upload to any server — your images stay on your device.</div>
+        </a>
+        <a href="/tools/password-generator.html" class="t-card">
+          <div class="t-icon">🔐</div>
+          <div class="t-name">Password Generator</div>
+          <div class="t-desc">Generate strong, cryptographically random passwords with custom length and character options. Check strength before copying.</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-<p>
-Choose a tool, enter your text or file, and get instant results — no signup required.
-All processing happens securely in your browser.
-</p>
+<!-- WHY -->
+<section class="why-section">
+  <div class="container">
+    <div class="eyebrow">Why BlinkTools</div>
+    <h2 class="h2-disp">Built different.</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h3>Privacy by Default</h3>
+        <p>Every tool runs entirely inside your browser. No server processing, no file uploads, no tracking. Your data never leaves your device.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h3>Zero Friction</h3>
+        <p>No signup, no email, no extension to install. Open the page and start working immediately. The way tools should work.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h3>Built for Speed</h3>
+        <p>Lightweight, no heavy frameworks, no tracking scripts. Pages load instantly on any connection — including mobile data.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="btnRow">
-  <a class="btn" href="/tools/word-counter">Try Word Counter</a>
-  <a class="btn" href="/tools/qr-generator">Create QR Code</a>
+<!-- HOW IT WORKS -->
+<section class="steps-section">
+  <div class="container">
+    <div class="steps-section-grid">
+      <div>
+        <div class="eyebrow">How It Works</div>
+        <h2 class="h2-disp">Three steps. <span class="accent-text">That's it.</span></h2>
+        <div class="steps-list">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-body"><h3>Pick a Tool</h3><p>Choose from word counter, QR generator, image compressor, or password generator above.</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-body"><h3>Enter Your Input</h3><p>Paste text, type a URL, upload an image, or choose password options — everything is instant.</p></div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-body"><h3>Get Your Result</h3><p>Copy the output, download your file, or share the result. Done. No waiting, no email confirmation.</p></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="tip-block">
+          <div class="tip-label">💡 Pro Tip</div>
+          <p>Combine tools together for maximum impact — compress an image, then generate a QR code for the sharing link. Two tools, one workflow.</p>
+        </div>
+        <div style="margin-top: 20px; background: var(--card); border: 2px solid var(--border); border-radius: 18px; padding: 28px;">
+          <div style="font-family: var(--disp); font-size: 1rem; font-weight: 800; margin-bottom: 14px;">All Tools</div>
+          <a href="/tools/word-counter.html" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink2);font-size:.87rem;font-weight:600;transition:all .15s;" onmouseover="this.style.background='var(--bg)';this.style.color='var(--accent)'" onmouseout="this.style.background='';this.style.color='var(--ink2)'">📝 Word Counter</a>
+          <a href="/tools/qr-generator.html" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink2);font-size:.87rem;font-weight:600;transition:all .15s;" onmouseover="this.style.background='var(--bg)';this.style.color='var(--accent)'" onmouseout="this.style.background='';this.style.color='var(--ink2)'">🔳 QR Generator</a>
+          <a href="/tools/image-compressor.html" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink2);font-size:.87rem;font-weight:600;transition:all .15s;" onmouseover="this.style.background='var(--bg)';this.style.color='var(--accent)'" onmouseout="this.style.background='';this.style.color='var(--ink2)'">🖼️ Image Compressor</a>
+          <a href="/tools/password-generator.html" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink2);font-size:.87rem;font-weight:600;transition:all .15s;" onmouseover="this.style.background='var(--bg)';this.style.color='var(--accent)'" onmouseout="this.style.background='';this.style.color='var(--ink2)'">🔐 Password Generator</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:32px;">
+    <h2>Ready to <em>blink</em>?</h2>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;">
+      <a href="/tools/word-counter.html" class="btn btn-accent">Try Word Counter</a>
+      <a href="/tools/password-generator.html" class="btn" style="background:rgba(247,243,236,0.1);color:#F7F3EC;border:2px solid rgba(247,243,236,0.15);">Generate Password</a>
+    </div>
+  </div>
 </div>
 
-<p class="mini">
-Works on mobile and desktop. Fast, simple, and free.
-</p>
-
-  </section>
-
-  <section class="adbox">
-    <div class="label">Ad Space (after AdSense approval)</div>
-    <div class="adslot">Ad will show here.</div>
-  </section>
-
-  <section class="grid">
-    <div class="card">
-      <div class="toolHead">
-        <div>
-          <h2>📝 Word / Character Counter</h2>
-          <p>Counts words, characters, reading time.</p>
-        </div>
-        <a class="btn primary" href="tools/word-counter.html">Open</a>
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+        <p>Free browser-based tools for everyday tasks. Fast, private, and no account required — ever.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/tools/word-counter.html">Word Counter</a>
+        <a href="/tools/qr-generator.html">QR Generator</a>
+        <a href="/tools/image-compressor.html">Image Compressor</a>
+        <a href="/tools/password-generator.html">Password Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/privacy.html">Privacy Policy</a>
+        <a href="/pages/terms.html">Terms of Service</a>
+        <a href="/pages/contact.html">Contact</a>
+        <a href="/sitemap.xml">Sitemap</a>
       </div>
     </div>
-
-    <div class="card">
-      <div class="toolHead">
-        <div>
-          <h2>🔳 QR Code Generator</h2>
-          <p>Create QR for links/text + download PNG.</p>
-        </div>
-        <a class="btn primary" href="tools/qr-generator.html">Open</a>
-      </div>
+    <div class="footer-bottom">
+      <span>© 2025 BlinkTools ⚡ All rights reserved.</span>
+      <span>Built for the browser.</span>
     </div>
-
-    <div class="card">
-      <div class="toolHead">
-        <div>
-          <h2>🖼️ Image Compressor</h2>
-          <p>Compress images in-browser (no upload).</p>
-        </div>
-        <a class="btn primary" href="tools/image-compressor.html">Open</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="toolHead">
-        <div>
-          <h2>🔐 Password Generator</h2>
-          <p>Generate strong passwords instantly.</p>
-        </div>
-        <a class="btn primary" href="tools/password-generator.html">Open</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="adbox">
-    <div class="label">Ad Space (after AdSense approval)</div>
-    <div class="adslot">Ad will show here.</div>
-  </section>
-
-  <footer class="footer">
-  <div class="links">
-    <a href="pages/about.html">About</a>
-    <a href="pages/privacy.html">Privacy</a>
-    <a href="pages/terms.html">Terms</a>
-    <a href="pages/contact.html">Contact</a>
-    <a href="sitemap.xml">Sitemap</a>
   </div>
-
-  <!-- Guides -->
-  <div class="links" style="margin-top:10px">
-    <a href="guides/how-to-use-password-generator.html">Password Guide</a>
-    <a href="guides/what-is-a-qr-code.html">QR Code Guide</a>
-    <a href="guides/image-compression-explained.html">Image Compression Guide</a>
-    <a href="guides/strong-password-tips.html">Password Tips</a>
-    <a href="guides/online-tools-privacy.html">Privacy Guide</a>
-  </div>
-
-  <p style="margin-top:10px">
-    © <span id="year"></span> BlinkTools ⚡
-  </p>
 </footer>
-</main>
 
-<script type="module">
-  import { setYear } from "./assets/app.js";
-  setYear();
-</script>
 </body>
-
 </html>
-
