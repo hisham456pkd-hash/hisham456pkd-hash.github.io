@@ -1,151 +1,186 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Image Compressor — BlinkTools</title>
-  <meta name="description" content="Compress JPG/PNG images in your browser. No server upload. Download compressed image." />
-  <link rel="stylesheet" href="../assets/style.css" />
+  <meta name="description" content="Free online image compressor. Compress JPG and PNG images locally in your browser. No upload, fully private."/>
+  <link rel="stylesheet" href="../assets/blink.css"/>
 </head>
 <body>
-<header>
-  <div class="wrap topbar">
-    <div class="brand">
-      <div class="logo">⚡</div>
-      <div>BlinkTools <small>Image Compressor</small></div>
-    </div>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="image-compressor.html">Compressor</a>
-      <a href="../pages/privacy.html">Privacy</a>
-      <a href="../pages/contact.html">Contact</a>
-    </nav>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+    <ul class="nav-links">
+      <li><a href="/tools/word-counter.html" class="nav-pill">All Tools</a></li>
+      <li><a href="/pages/privacy.html">Privacy</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
-<main class="wrap">
-  <div class="card" style="margin-top:14px">
-    <div class="breadcrumb"><a href="../index.html">Home</a> → Tools → Image Compressor</div>
-    <h1 style="margin:6px 0 0">🖼️ Image Compressor</h1>
-    <p>Compress images locally (no upload). Works best with JPG.</p>
+<div class="tool-page">
+  <div class="container">
+
+    <div class="breadcrumb">
+      <a href="/index.html">Home</a>
+      <span>/</span>
+      <span>Image Compressor</span>
+    </div>
+
+    <div class="tool-layout">
+
+      <div class="tool-panel">
+        <div class="eyebrow">Image Optimization</div>
+        <h1 class="tool-heading">Image Compressor</h1>
+        <p class="tool-sub">Compress images locally — nothing is uploaded. Works best with JPG.</p>
+
+        <div class="drop-zone" id="drop-zone">
+          <input type="file" id="img-input" accept="image/*" onchange="handleFile(this.files[0])"/>
+          <div class="drop-icon">🖼️</div>
+          <p><strong>Click to choose</strong> or drag & drop an image</p>
+          <p style="margin-top:6px;font-size:.78rem;">JPG, PNG, WebP · Processed locally</p>
+        </div>
+
+        <div style="margin-top:4px;">
+          <label class="field-label">Quality: <span id="q-val">0.75</span></label>
+          <input type="range" id="quality" min="0.1" max="1" step="0.05" value="0.75"
+                 oninput="document.getElementById('q-val').textContent=parseFloat(this.value).toFixed(2)"/>
+        </div>
+
+        <div class="compress-stats">
+          <div class="stat-box"><div class="stat-val" id="orig-size">—</div><div class="stat-lbl">Original</div></div>
+          <div class="stat-box"><div class="stat-val" id="comp-size">—</div><div class="stat-lbl">Compressed</div></div>
+          <div class="stat-box"><div class="stat-val" id="saved-pct">—</div><div class="stat-lbl">Saved</div></div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-dark" onclick="compress()">Compress</button>
+          <button class="btn btn-outline" id="dl-btn" onclick="download()" disabled style="opacity:.5;">Download</button>
+        </div>
+
+        <img id="img-preview" alt="Compressed preview"/>
+
+        <p style="font-size:.78rem;color:var(--muted);margin-top:20px;font-family:var(--mono);">Images are processed 100% in-browser. No data leaves your device.</p>
+      </div>
+
+      <div class="tool-sidebar">
+        <div class="ad-card">[ Ad Space — after AdSense approval ]</div>
+
+        <div class="side-card">
+          <div class="side-card-title">Other Tools</div>
+          <ul class="s-tools">
+            <li><a href="/tools/word-counter.html"><span class="si">📝</span> Word Counter</a></li>
+            <li><a href="/tools/qr-generator.html"><span class="si">🔳</span> QR Generator</a></li>
+            <li><a href="/tools/image-compressor.html" class="active"><span class="si">🖼️</span> Image Compressor</a></li>
+            <li><a href="/tools/password-generator.html"><span class="si">🔐</span> Password Generator</a></li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h4>Best results</h4>
+          <p>Quality between 0.6–0.8 typically reduces file size by 40–70% with minimal visible quality loss. For web use, 0.75 is a great starting point.</p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <section class="adbox">
-    <div class="label">Ad Space (after AdSense approval)</div>
-    <div class="adslot">Ad will show here.</div>
-  </section>
-
-  <section class="card">
-    <label class="mini">Choose an image</label>
-    <input id="file" type="file" accept="image/*" />
-
-    <div class="row" style="margin-top:10px">
-      <span class="pill">Quality: <strong id="qLabel">0.75</strong></span>
-      <input id="quality" type="range" min="0.2" max="0.95" step="0.01" value="0.75" style="flex:1" />
+<div class="cta-banner" style="margin-top:0;padding:56px 0;">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+    <div style="font-family:var(--disp);font-size:1.5rem;font-weight:800;letter-spacing:-.5px;">Try another tool</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="/tools/qr-generator.html" class="btn btn-accent">QR Generator</a>
+      <a href="/tools/word-counter.html" class="btn" style="background:rgba(247,243,236,0.1);color:#F7F3EC;border:2px solid rgba(247,243,236,0.15);">Word Counter</a>
     </div>
+  </div>
+</div>
 
-    <div class="btnRow">
-      <button class="btn primary" id="compress">Compress</button>
-      <button class="btn" id="download" disabled>Download</button>
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+        <p>Free browser-based tools. Fast, private, no signup.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/tools/word-counter.html">Word Counter</a>
+        <a href="/tools/qr-generator.html">QR Generator</a>
+        <a href="/tools/image-compressor.html">Image Compressor</a>
+        <a href="/tools/password-generator.html">Password Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/privacy.html">Privacy</a>
+        <a href="/pages/terms.html">Terms</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
     </div>
-
-    <div class="stats" style="margin-top:10px">
-      <div class="stat"><b id="orig">-</b><span>Original</span></div>
-      <div class="stat"><b id="new">-</b><span>Compressed</span></div>
-      <div class="stat"><b id="saved">-</b><span>Saved</span></div>
+    <div class="footer-bottom">
+      <span>© 2025 BlinkTools ⚡</span><span>Built for the browser.</span>
     </div>
+  </div>
+</footer>
 
-    <div class="imgPreview" style="margin-top:12px">
-      <img id="preview" alt="Preview" />
-    </div>
+<script>
+  let compressedDataURL = null;
+  let currentFile = null;
 
-    <p class="mini" style="margin-top:10px">Tip: Add “resize image” tool later for more traffic 📈</p>
-  </section>
+  const dz = document.getElementById('drop-zone');
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.style.borderColor = 'var(--accent)'; });
+  dz.addEventListener('dragleave', () => { dz.style.borderColor = ''; });
+  dz.addEventListener('drop', e => { e.preventDefault(); dz.style.borderColor = ''; if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
 
-  <footer class="footer">
-    <div class="links">
-      <a href="../pages/about.html">About</a>
-      <a href="../pages/privacy.html">Privacy</a>
-      <a href="../pages/terms.html">Terms</a>
-      <a href="../pages/contact.html">Contact</a>
-    </div>
-    <p style="margin-top:10px">© <span id="year"></span> BlinkTools ⚡</p>
-  </footer>
-</main>
-
-<script type="module">
-  import { setYear, toast, fmtBytes } from "../assets/app.js";
-  setYear();
-
-  const file = document.getElementById("file");
-  const quality = document.getElementById("quality");
-  const qLabel = document.getElementById("qLabel");
-  const btn = document.getElementById("compress");
-  const dl = document.getElementById("download");
-  const preview = document.getElementById("preview");
-  const orig = document.getElementById("orig");
-  const neu = document.getElementById("new");
-  const saved = document.getElementById("saved");
-
-  let outBlob = null;
-  let origBytes = 0;
-
-  quality.addEventListener("input", ()=> qLabel.textContent = quality.value);
-
-  function calcSaved(newBytes){
-    const pct = Math.max(0, Math.round((1 - (newBytes / origBytes)) * 100));
-    return pct + "%";
+  function handleFile(file) {
+    if (!file) return;
+    currentFile = file;
+    document.getElementById('orig-size').textContent = formatSize(file.size);
+    document.getElementById('comp-size').textContent = '—';
+    document.getElementById('saved-pct').textContent = '—';
+    document.getElementById('img-preview').style.display = 'none';
+    compressedDataURL = null;
+    const dl = document.getElementById('dl-btn'); dl.disabled = true; dl.style.opacity = '.5';
   }
 
-  async function compress(){
-    const f = file.files && file.files[0];
-    if(!f){ toast("Choose an image first 🖼️"); return; }
-
-    origBytes = f.size;
-    orig.textContent = fmtBytes(origBytes);
-
-    const img = new Image();
-    img.onload = () => {
-      const maxW = 2200;
-      const scale = Math.min(1, maxW / img.width);
-      const w = Math.round(img.width * scale);
-      const h = Math.round(img.height * scale);
-
-      const canvas = document.createElement("canvas");
-      canvas.width = w; canvas.height = h;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0, w, h);
-
-      const isPng = f.type === "image/png";
-      const type = isPng ? "image/png" : "image/jpeg";
-      const q = isPng ? 0.92 : parseFloat(quality.value);
-
-      canvas.toBlob((blob)=>{
-        if(!blob){ toast("Compression failed 😵"); return; }
-        outBlob = blob;
-        neu.textContent = fmtBytes(blob.size);
-        saved.textContent = calcSaved(blob.size);
-        preview.src = URL.createObjectURL(blob);
-        dl.disabled = false;
-        toast("Compressed ✅");
-      }, type, q);
+  function compress() {
+    if (!currentFile) { alert('Please choose an image first.'); return; }
+    const quality = parseFloat(document.getElementById('quality').value);
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width; canvas.height = img.height;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        compressedDataURL = canvas.toDataURL('image/jpeg', quality);
+        const compBytes = Math.round((compressedDataURL.length - 22) * 3 / 4);
+        const saved = Math.round((1 - compBytes / currentFile.size) * 100);
+        document.getElementById('comp-size').textContent = formatSize(compBytes);
+        document.getElementById('saved-pct').textContent = Math.max(0,saved) + '%';
+        const prev = document.getElementById('img-preview');
+        prev.src = compressedDataURL; prev.style.display = 'block';
+        const dl = document.getElementById('dl-btn'); dl.disabled = false; dl.style.opacity = '1';
+      };
+      img.src = e.target.result;
     };
-    img.onerror = ()=> toast("Invalid image 😅");
-    img.src = URL.createObjectURL(f);
+    reader.readAsDataURL(currentFile);
   }
 
-  function download(){
-    if(!outBlob){ toast("Compress first 🙂"); return; }
-    const a = document.createElement("a");
-    const url = URL.createObjectURL(outBlob);
-    a.href = url;
-    a.download = "compressed-image";
-    a.click();
-    setTimeout(()=>URL.revokeObjectURL(url), 1200);
+  function download() {
+    if (!compressedDataURL) return;
+    const a = document.createElement('a');
+    a.download = 'compressed.jpg'; a.href = compressedDataURL; a.click();
   }
 
-  btn.addEventListener("click", compress);
-  dl.addEventListener("click", download);
+  function formatSize(bytes) {
+    if (bytes >= 1048576) return (bytes/1048576).toFixed(1)+' MB';
+    if (bytes >= 1024)    return (bytes/1024).toFixed(1)+' KB';
+    return bytes+' B';
+  }
 </script>
+
 </body>
 </html>
