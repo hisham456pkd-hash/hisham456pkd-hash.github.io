@@ -1,48 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Contact — BlinkTools</title>
-  <meta name="description" content="Contact BlinkTools." />
-  <link rel="stylesheet" href="../assets/style.css" />
+  <meta name="description" content="Contact BlinkTools. Questions, suggestions, or bug reports — we'd love to hear from you."/>
+  <link rel="stylesheet" href="../assets/blink.css"/>
 </head>
 <body>
-<header>
-  <div class="wrap topbar">
-    <div class="brand"><div class="logo">⚡</div><div>BlinkTools <small>Contact</small></div></div>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="../tools/word-counter.html">Tools</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+    <ul class="nav-links">
+      <li><a href="/tools/word-counter.html">Tools</a></li>
+      <li><a href="/pages/about.html">About</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li>
+      <li><a href="/tools/word-counter.html" class="nav-pill">Try Now</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
-<main class="wrap">
-  <section class="card" style="margin-top:14px">
-    <h1 style="margin:0 0 6px">Contact</h1>
-    <div class="pill">Email: <strong>hisham789pkd@gmail.com</strong></div>
+<div class="container">
+  <div class="inner-page">
+    <div class="eyebrow">Reach Out</div>
+    <h1>Contact Us</h1>
+    <p>Have a question, found a bug, or want to suggest a new tool? We'd love to hear from you. Drop us an email and we'll reply as soon as we can.</p>
 
-    <p class="mini" style="margin-top:10px">
-      Will try to answer you as soon as possible.
-    </p>
-  </section>
-
-  <footer class="footer">
-    <div class="links">
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
+    <div style="background:var(--card);border:2px solid var(--border);border-radius:20px;padding:36px;margin:32px 0;">
+      <div style="font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;">Email</div>
+      <a href="mailto:hisham789pkd@gmail.com" style="font-family:var(--disp);font-size:1.4rem;font-weight:800;color:var(--accent);text-decoration:none;letter-spacing:-.3px;">
+        hisham789pkd@gmail.com
+      </a>
+      <p style="font-size:.86rem;color:var(--muted);margin-top:14px;line-height:1.65;">We'll try to get back to you as soon as possible. Bug reports and tool suggestions are always welcome.</p>
     </div>
-    <p style="margin-top:10px">© <span id="year"></span> BlinkTools ⚡</p>
-  </footer>
-</main>
 
-<script type="module">
-  import { setYear } from "../assets/app.js";
-  setYear();
-</script>
+    <h2>What to include</h2>
+    <ul>
+      <li>Which tool you're using or suggesting</li>
+      <li>Your browser and device (for bug reports)</li>
+      <li>A clear description of the issue or idea</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+        <p>Free browser-based tools. Fast, private, no signup.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/tools/word-counter.html">Word Counter</a>
+        <a href="/tools/qr-generator.html">QR Generator</a>
+        <a href="/tools/image-compressor.html">Image Compressor</a>
+        <a href="/tools/password-generator.html">Password Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/privacy.html">Privacy</a>
+        <a href="/pages/terms.html">Terms</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 BlinkTools ⚡</span><span>Built for the browser.</span>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
