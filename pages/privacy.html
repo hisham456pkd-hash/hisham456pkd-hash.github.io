@@ -1,58 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Privacy Policy — BlinkTools</title>
-  <meta name="description" content="Privacy Policy for BlinkTools." />
-  <link rel="stylesheet" href="../assets/style.css" />
+  <meta name="description" content="BlinkTools Privacy Policy. We don't collect your data. All tools run locally in your browser."/>
+  <link rel="stylesheet" href="../assets/blink.css"/>
 </head>
 <body>
-<header>
-  <div class="wrap topbar">
-    <div class="brand"><div class="logo">⚡</div><div>BlinkTools <small>Privacy</small></div></div>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="../tools/word-counter.html">Tools</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+    <ul class="nav-links">
+      <li><a href="/tools/word-counter.html">Tools</a></li>
+      <li><a href="/pages/about.html">About</a></li>
+      <li><a href="/pages/privacy.html">Privacy</a></li>
+      <li><a href="/tools/word-counter.html" class="nav-pill">Try Now</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
-<main class="wrap">
-  <section class="card" style="margin-top:14px">
-    <h1 style="margin:0 0 6px">Privacy Policy</h1>
-    <p>
-      BlinkTools provides browser-based tools. We do not require accounts and we do not intentionally collect personal data.
-      Text and images you use in tools are processed in your browser.
-    </p>
+<div class="container">
+  <div class="inner-page">
+    <div class="eyebrow">Legal</div>
+    <h1>Privacy Policy</h1>
+    <p><em>Last updated: 2025</em></p>
+    <p>BlinkTools ("we", "our", "us") is committed to protecting your privacy. This policy explains what data we collect (spoiler: very little) and how we handle it.</p>
 
-    <h2 style="margin-top:14px">Cookies & Ads</h2>
-    <p>
-      If we use Google AdSense in the future, Google may use cookies to serve and measure ads and to personalize advertising.
-      You can manage ad personalization in your Google account settings.
-    </p>
+    <h2>Data Collection</h2>
+    <p>All BlinkTools utilities (word counter, QR generator, image compressor, password generator) process data <strong>entirely inside your browser</strong>. Text you type, images you upload, and passwords you generate are never sent to any server. We cannot see them.</p>
 
-    <h2 style="margin-top:14px">Contact</h2>
-    <p>Questions? Email: <strong>hisham789pkd@gmail.com</strong> </p>
+    <h2>Analytics</h2>
+    <p>We may use basic, privacy-respecting analytics (such as page view counts) that do not identify individual users and do not use cookies that track you across sites.</p>
 
-    <p class="mini">Last updated: <strong>2026-02-07</strong></p>
-  </section>
+    <h2>Advertising</h2>
+    <p>We plan to use Google AdSense to display ads once approved. Google may use cookies to show relevant ads. You can opt out via <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google's Ad Settings</a>. We do not control the content of third-party ads.</p>
 
-  <footer class="footer">
-    <div class="links">
-      <a href="about.html">About</a>
-      <a href="terms.html">Terms</a>
-      <a href="contact.html">Contact</a>
+    <h2>Cookies</h2>
+    <p>BlinkTools itself does not set cookies. Any cookies present are set by third-party services (e.g. Google AdSense) and are governed by their own privacy policies.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>BlinkTools is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this policy from time to time. Changes will be posted on this page with a new date.</p>
+
+    <h2>Contact</h2>
+    <p>For privacy-related questions, email us at <a href="mailto:hisham789pkd@gmail.com">hisham789pkd@gmail.com</a>.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+        <p>Free browser-based tools. Fast, private, no signup.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/tools/word-counter.html">Word Counter</a>
+        <a href="/tools/qr-generator.html">QR Generator</a>
+        <a href="/tools/image-compressor.html">Image Compressor</a>
+        <a href="/tools/password-generator.html">Password Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/privacy.html">Privacy</a>
+        <a href="/pages/terms.html">Terms</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
     </div>
-    <p style="margin-top:10px">© <span id="year"></span> BlinkTools ⚡</p>
-  </footer>
-</main>
+    <div class="footer-bottom">
+      <span>© 2025 BlinkTools ⚡</span><span>Built for the browser.</span>
+    </div>
+  </div>
+</footer>
 
-<script type="module">
-  import { setYear } from "../assets/app.js";
-  setYear();
-</script>
 </body>
 </html>
