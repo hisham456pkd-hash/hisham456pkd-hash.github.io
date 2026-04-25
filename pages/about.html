@@ -1,49 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>About — BlinkTools</title>
-  <meta name="description" content="About BlinkTools." />
-  <link rel="stylesheet" href="../assets/style.css" />
+  <meta name="description" content="About BlinkTools — free, fast, private browser tools built for everyday use."/>
+  <link rel="stylesheet" href="../assets/blink.css"/>
 </head>
 <body>
-<header>
-  <div class="wrap topbar">
-    <div class="brand"><div class="logo">⚡</div><div>BlinkTools <small>About</small></div></div>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="../tools/word-counter.html">Tools</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+    <ul class="nav-links">
+      <li><a href="/tools/word-counter.html">Tools</a></li>
+      <li><a href="/pages/about.html">About</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li>
+      <li><a href="/tools/word-counter.html" class="nav-pill">Try Now</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
-<main class="wrap">
-  <section class="card" style="margin-top:14px">
-    <h1 style="margin:0 0 6px">About BlinkTools</h1>
-    <p>
-      BlinkTools is a simple collection of free online utilities designed to be fast, mobile-friendly, and easy to use.
-    </p>
-    <p>
-      Our goal: build tools people actually need daily — without annoying popups or heavy pages.
-    </p>
-  </section>
+<div class="container">
+  <div class="inner-page">
+    <div class="eyebrow">Our Story</div>
+    <h1>About BlinkTools</h1>
+    <p>BlinkTools is a simple collection of free online utilities designed to be fast, mobile-friendly, and easy to use — without any of the usual friction.</p>
+    <p>Our goal is to build tools people actually need daily — without annoying popups, forced sign-ups, or heavy pages that take forever to load.</p>
 
-  <footer class="footer">
-    <div class="links">
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-      <a href="contact.html">Contact</a>
+    <h2>Why we built this</h2>
+    <p>Most online tools are bloated, ad-ridden, and require you to create an account just to count words or generate a QR code. That's unnecessary. Every tool on BlinkTools runs entirely in your browser — your data never touches our servers because we don't have any server processing at all.</p>
+
+    <h2>What we offer</h2>
+    <p>Currently we have four core tools: a Word / Character Counter, a QR Code Generator, an Image Compressor, and a Password Generator. All free, all instant, all private.</p>
+
+    <h2>Privacy first</h2>
+    <p>We take privacy seriously. No tracking pixels, no analytics that identify you, no selling data. See our <a href="/pages/privacy.html">Privacy Policy</a> for details.</p>
+
+    <h2>Get in touch</h2>
+    <p>Have a tool suggestion or found a bug? <a href="/pages/contact.html">Contact us</a> — we'd love to hear from you.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+        <p>Free browser-based tools. Fast, private, no signup.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/tools/word-counter.html">Word Counter</a>
+        <a href="/tools/qr-generator.html">QR Generator</a>
+        <a href="/tools/image-compressor.html">Image Compressor</a>
+        <a href="/tools/password-generator.html">Password Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/privacy.html">Privacy</a>
+        <a href="/pages/terms.html">Terms</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
     </div>
-    <p style="margin-top:10px">© <span id="year"></span> BlinkTools ⚡</p>
-  </footer>
-</main>
+    <div class="footer-bottom">
+      <span>© 2025 BlinkTools ⚡</span><span>Built for the browser.</span>
+    </div>
+  </div>
+</footer>
 
-<script type="module">
-  import { setYear } from "../assets/app.js";
-  setYear();
-</script>
 </body>
 </html>
