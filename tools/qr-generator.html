@@ -1,133 +1,141 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>QR Code Generator — BlinkTools</title>
-  <meta name="description" content="Generate QR codes for links or text. Download as PNG for free." />
-  <link rel="stylesheet" href="../assets/style.css" />
+  <meta name="description" content="Free online QR code generator. Create QR codes for links or text and download as PNG — runs entirely in your browser."/>
+  <link rel="stylesheet" href="../assets/blink.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<header>
-  <div class="wrap topbar">
-    <div class="brand">
-      <div class="logo">⚡</div>
-      <div>BlinkTools <small>QR Generator</small></div>
-    </div>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="word-counter.html">Word Counter</a>
-      <a href="qr-generator.html">QR</a>
-      <a href="../pages/privacy.html">Privacy</a>
-    </nav>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+    <ul class="nav-links">
+      <li><a href="/tools/word-counter.html" class="nav-pill">All Tools</a></li>
+      <li><a href="/pages/privacy.html">Privacy</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
-<main class="wrap">
-  <div class="card" style="margin-top:14px">
-    <div class="breadcrumb"><a href="../index.html">Home</a> → Tools → QR Generator</div>
-    <h1 style="margin:6px 0 0">🔳 QR Code Generator</h1>
-    <p>Create QR for any link/text and download as PNG.</p>
+<div class="tool-page">
+  <div class="container">
+
+    <div class="breadcrumb">
+      <a href="/index.html">Home</a>
+      <span>/</span>
+      <span>QR Generator</span>
+    </div>
+
+    <div class="tool-layout">
+
+      <div class="tool-panel">
+        <div class="eyebrow">QR Code</div>
+        <h1 class="tool-heading">QR Generator</h1>
+        <p class="tool-sub">Enter a URL or text below. Click Generate to create your QR code.</p>
+
+        <label class="field-label" for="qr-input">URL or Text</label>
+        <input class="f-input" id="qr-input" type="text" placeholder="https://example.com or any text…"/>
+
+        <div style="margin-top:16px;">
+          <label class="field-label">Size: <span id="size-val">256</span> px</label>
+          <input type="range" id="qr-size" min="128" max="512" step="32" value="256" oninput="document.getElementById('size-val').textContent=this.value"/>
+        </div>
+
+        <div id="qr-output"><span class="qr-placeholder">QR code will appear here</span></div>
+
+        <div class="btn-row">
+          <button class="btn btn-dark" onclick="generateQR()">Generate QR</button>
+          <button class="btn btn-outline" id="dl-btn" onclick="downloadQR()" disabled style="opacity:.5;">Download PNG</button>
+        </div>
+
+        <p style="font-size:.78rem;color:var(--muted);margin-top:16px;font-family:var(--mono);">Generated locally in your browser. Nothing is sent to any server.</p>
+      </div>
+
+      <div class="tool-sidebar">
+        <div class="ad-card">[ Ad Space — after AdSense approval ]</div>
+
+        <div class="side-card">
+          <div class="side-card-title">Other Tools</div>
+          <ul class="s-tools">
+            <li><a href="/tools/word-counter.html"><span class="si">📝</span> Word Counter</a></li>
+            <li><a href="/tools/qr-generator.html" class="active"><span class="si">🔳</span> QR Generator</a></li>
+            <li><a href="/tools/image-compressor.html"><span class="si">🖼️</span> Image Compressor</a></li>
+            <li><a href="/tools/password-generator.html"><span class="si">🔐</span> Password Generator</a></li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h4>Tips</h4>
+          <p>For best scan results, use at least 256px. QR codes work with URLs, phone numbers, emails, or any plain text up to ~2000 characters.</p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <section class="adbox">
-    <div class="label">Ad Space (after AdSense approval)</div>
-    <div class="adslot">Ad will show here.</div>
-  </section>
-
-  <section class="card">
-    <label class="mini">Text / URL</label>
-    <input id="qrText" placeholder="https://example.com" />
-
-    <div class="row" style="margin-top:10px">
-      <span class="pill">Size: <strong id="sizeLabel">256</strong> px</span>
-      <input id="size" type="range" min="160" max="512" value="256" style="flex:1" />
+<div class="cta-banner" style="margin-top:0;padding:56px 0;">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+    <div style="font-family:var(--disp);font-size:1.5rem;font-weight:800;letter-spacing:-.5px;">Try another tool</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="/tools/word-counter.html" class="btn btn-accent">Word Counter</a>
+      <a href="/tools/image-compressor.html" class="btn" style="background:rgba(247,243,236,0.1);color:#F7F3EC;border:2px solid rgba(247,243,236,0.15);">Image Compressor</a>
     </div>
+  </div>
+</div>
 
-    <div class="btnRow">
-      <button class="btn primary" id="gen">Generate</button>
-      <button class="btn" id="dl" disabled>Download PNG</button>
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+        <p>Free browser-based tools. Fast, private, no signup.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/tools/word-counter.html">Word Counter</a>
+        <a href="/tools/qr-generator.html">QR Generator</a>
+        <a href="/tools/image-compressor.html">Image Compressor</a>
+        <a href="/tools/password-generator.html">Password Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/privacy.html">Privacy</a>
+        <a href="/pages/terms.html">Terms</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
     </div>
-
-    <div style="margin-top:12px">
-      <div id="qrBox" class="qrCanvas"></div>
+    <div class="footer-bottom">
+      <span>© 2025 BlinkTools ⚡</span><span>Built for the browser.</span>
     </div>
+  </div>
+</footer>
 
-    <p class="mini">QR is generated locally in your browser.</p>
-  </section>
-
-  <footer class="footer">
-    <div class="links">
-      <a href="../pages/about.html">About</a>
-      <a href="../pages/privacy.html">Privacy</a>
-      <a href="../pages/terms.html">Terms</a>
-      <a href="../pages/contact.html">Contact</a>
-    </div>
-    <p style="margin-top:10px">© <span id="year"></span> BlinkTools ⚡</p>
-  </footer>
-</main>
-
-<!-- QR Library (CDN) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<script type="module">
-  import { setYear, toast } from "../assets/app.js";
-  setYear();
-
-  const qrText = document.getElementById("qrText");
-  const size = document.getElementById("size");
-  const sizeLabel = document.getElementById("sizeLabel");
-  const box = document.getElementById("qrBox");
-  const dl = document.getElementById("dl");
-
-  let lastCanvas = null;
-
-  function clearBox(){
-    box.innerHTML = "";
-    lastCanvas = null;
-    dl.disabled = true;
+<script>
+  let qrInst = null;
+  function generateQR() {
+    const val  = document.getElementById('qr-input').value.trim();
+    const size = parseInt(document.getElementById('qr-size').value);
+    if (!val) { alert('Please enter a URL or text first.'); return; }
+    const out = document.getElementById('qr-output');
+    out.innerHTML = '';
+    qrInst = new QRCode(out, { text: val, width: size, height: size, correctLevel: QRCode.CorrectLevel.H });
+    const dl = document.getElementById('dl-btn');
+    dl.disabled = false; dl.style.opacity = '1';
   }
-
-  function generate(){
-    const text = (qrText.value || "").trim();
-    if(!text){
-      toast("Enter text/URL first 🙂");
-      return;
-    }
-    clearBox();
-    const s = parseInt(size.value, 10);
-    new QRCode(box, {
-      text,
-      width: s,
-      height: s,
-      correctLevel: QRCode.CorrectLevel.M
-    });
-
-    // QRCodejs adds <img> or <canvas>
-    setTimeout(()=>{
-      lastCanvas = box.querySelector("canvas") || null;
-      dl.disabled = !lastCanvas;
-      toast("QR generated ✅");
-    }, 60);
-  }
-
-  size.addEventListener("input", ()=>{
-    sizeLabel.textContent = size.value;
-  });
-
-  document.getElementById("gen").addEventListener("click", generate);
-
-  dl.addEventListener("click", ()=>{
-    if(!lastCanvas){ toast("Generate QR first 🙂"); return; }
-    const a = document.createElement("a");
-    a.download = "blinktools-qr.png";
-    a.href = lastCanvas.toDataURL("image/png");
+  function downloadQR() {
+    const canvas = document.querySelector('#qr-output canvas');
+    if (!canvas) return;
+    const a = document.createElement('a');
+    a.download = 'qrcode.png';
+    a.href = canvas.toDataURL();
     a.click();
-  });
-
-  // default
-  qrText.value = "https://blinktools.example";
-  generate();
+  }
 </script>
+
 </body>
 </html>
