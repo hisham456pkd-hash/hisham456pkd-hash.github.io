@@ -1,107 +1,149 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Word Counter — BlinkTools</title>
-  <meta name="description" content="Free word counter: count words, characters, characters without spaces, and reading time." />
-  <link rel="stylesheet" href="../assets/style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Word / Character Counter — BlinkTools</title>
+  <meta name="description" content="Free online word counter. Count words, characters, and get estimated reading time instantly in your browser."/>
+  <link rel="stylesheet" href="../assets/blink.css"/>
 </head>
 <body>
-<header>
-  <div class="wrap topbar">
-    <div class="brand">
-      <div class="logo">⚡</div>
-      <div>BlinkTools <small>Word Counter</small></div>
-    </div>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="word-counter.html">Word Counter</a>
-      <a href="qr-generator.html">QR</a>
-      <a href="../pages/privacy.html">Privacy</a>
-    </nav>
-  </div>
-</header>
 
-<main class="wrap">
-  <div class="card" style="margin-top:14px">
-    <div class="toolHead">
-      <div>
-        <div class="breadcrumb"><a href="../index.html">Home</a> → Tools → Word Counter</div>
-        <h1 style="margin:6px 0 0">📝 Word / Character Counter</h1>
-        <p>Paste text and instantly see counts + reading time.</p>
+<nav>
+  <div class="nav-inner">
+    <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+    <ul class="nav-links">
+      <li><a href="/tools/word-counter.html" class="nav-pill">All Tools</a></li>
+      <li><a href="/pages/privacy.html">Privacy</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="tool-page">
+  <div class="container">
+
+    <div class="breadcrumb">
+      <a href="/index.html">Home</a>
+      <span>/</span>
+      <span>Word Counter</span>
+    </div>
+
+    <div class="tool-layout">
+
+      <!-- MAIN PANEL -->
+      <div class="tool-panel">
+        <div class="eyebrow">Text Analysis</div>
+        <h1 class="tool-heading">Word Counter</h1>
+        <p class="tool-sub">Paste or type your text below. Results update instantly.</p>
+
+        <label class="field-label" for="txt">Your Text</label>
+        <textarea class="f-textarea" id="txt" placeholder="Start typing or paste your text here…" style="min-height:260px;"></textarea>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-val" id="words">0</div>
+            <div class="stat-lbl">Words</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="chars">0</div>
+            <div class="stat-lbl">Characters</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="chars-ns">0</div>
+            <div class="stat-lbl">No Spaces</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="read">0</div>
+            <div class="stat-lbl">Read (min)</div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-dark" onclick="clearText()">Clear</button>
+          <button class="btn btn-outline" onclick="copyText()">Copy Text</button>
+        </div>
+
+        <p style="font-size:.78rem;color:var(--muted);margin-top:16px;font-family:var(--mono);">Reading time assumes ~200 words/min.</p>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="tool-sidebar">
+
+        <div class="ad-card">[ Ad Space — after AdSense approval ]</div>
+
+        <div class="side-card">
+          <div class="side-card-title">Other Tools</div>
+          <ul class="s-tools">
+            <li><a href="/tools/word-counter.html" class="active"><span class="si">📝</span> Word Counter</a></li>
+            <li><a href="/tools/qr-generator.html"><span class="si">🔳</span> QR Generator</a></li>
+            <li><a href="/tools/image-compressor.html"><span class="si">🖼️</span> Image Compressor</a></li>
+            <li><a href="/tools/password-generator.html"><span class="si">🔐</span> Password Generator</a></li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h4>What it counts</h4>
+          <p>Words are separated by whitespace. Characters include all letters, punctuation, and spaces. "No Spaces" excludes whitespace characters. Reading time assumes an average pace of 200 words per minute.</p>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
 
-  <section class="adbox">
-    <div class="label">Ad Space (after AdSense approval)</div>
-    <div class="adslot">Ad will show here.</div>
-  </section>
-
-  <section class="card">
-    <textarea id="text" placeholder="Type or paste your text here..."></textarea>
-
-    <div class="stats">
-      <div class="stat"><b id="words">0</b><span>Words</span></div>
-      <div class="stat"><b id="chars">0</b><span>Characters</span></div>
-      <div class="stat"><b id="nospace">0</b><span>Chars (no spaces)</span></div>
-      <div class="stat"><b id="read">0</b><span>Read time (min)</span></div>
+<div class="cta-banner" style="margin-top:0;padding:56px 0;">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+    <div style="font-family:var(--disp);font-size:1.5rem;font-weight:800;letter-spacing:-.5px;">Try another tool</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="/tools/qr-generator.html" class="btn btn-accent">QR Generator</a>
+      <a href="/tools/password-generator.html" class="btn" style="background:rgba(247,243,236,0.1);color:#F7F3EC;border:2px solid rgba(247,243,236,0.15);">Password Generator</a>
     </div>
+  </div>
+</div>
 
-    <div class="btnRow">
-      <button class="btn" id="clear">Clear</button>
-      <button class="btn primary" id="copy">Copy Text</button>
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/index.html" class="logo"><span class="logo-mark">⚡</span> BlinkTools</a>
+        <p>Free browser-based tools. Fast, private, no signup.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/tools/word-counter.html">Word Counter</a>
+        <a href="/tools/qr-generator.html">QR Generator</a>
+        <a href="/tools/image-compressor.html">Image Compressor</a>
+        <a href="/tools/password-generator.html">Password Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/privacy.html">Privacy</a>
+        <a href="/pages/terms.html">Terms</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
     </div>
-
-    <p class="mini">Reading time assumes ~200 words/min.</p>
-  </section>
-
-  <footer class="footer">
-    <div class="links">
-      <a href="../pages/about.html">About</a>
-      <a href="../pages/privacy.html">Privacy</a>
-      <a href="../pages/terms.html">Terms</a>
-      <a href="../pages/contact.html">Contact</a>
+    <div class="footer-bottom">
+      <span>© 2025 BlinkTools ⚡</span><span>Built for the browser.</span>
     </div>
-    <p style="margin-top:10px">© <span id="year"></span> BlinkTools ⚡</p>
-  </footer>
-</main>
+  </div>
+</footer>
 
-<script type="module">
-  import { setYear, copyText, toast } from "../assets/app.js";
-  setYear();
-
-  const elText = document.getElementById("text");
-  const elWords = document.getElementById("words");
-  const elChars = document.getElementById("chars");
-  const elNoSpace = document.getElementById("nospace");
-  const elRead = document.getElementById("read");
-
-  function update(){
-    const t = elText.value || "";
-    const words = t.trim() ? t.trim().split(/\s+/).length : 0;
-    const chars = t.length;
-    const noSpace = t.replace(/\s/g, "").length;
-    const read = Math.max(0, Math.round(words / 200));
-    elWords.textContent = words;
-    elChars.textContent = chars;
-    elNoSpace.textContent = noSpace;
-    elRead.textContent = read;
-  }
-
-  elText.addEventListener("input", update);
-  update();
-
-  document.getElementById("clear").addEventListener("click", ()=>{
-    elText.value = "";
-    update();
-    toast("Cleared 🧹");
-  });
-
-  document.getElementById("copy").addEventListener("click", ()=>{
-    copyText(elText.value || "");
-  });
+<script>
+  const txt = document.getElementById('txt');
+  const update = () => {
+    const v = txt.value;
+    const words = v.trim() === '' ? 0 : v.trim().split(/\s+/).length;
+    document.getElementById('words').textContent   = words;
+    document.getElementById('chars').textContent   = v.length;
+    document.getElementById('chars-ns').textContent = v.replace(/\s/g,'').length;
+    document.getElementById('read').textContent    = Math.ceil(words / 200) || 0;
+  };
+  txt.addEventListener('input', update);
+  function clearText() { txt.value = ''; update(); }
+  function copyText()  { navigator.clipboard.writeText(txt.value).then(()=>{ const b = document.querySelector('.btn-outline'); const o = b.textContent; b.textContent='Copied!'; setTimeout(()=>b.textContent=o,1500); }); }
 </script>
+
 </body>
 </html>
